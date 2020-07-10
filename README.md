@@ -68,7 +68,9 @@ The header tag is used to indicate a given publisher page is opting in to sharin
 
 This opt-in / registration could also be done as a javascript API. Something like:
 
+```
 navigator.registerCohort("https://cohort-provider.example/register");
+```
 
 ### Cohort Provider
 
@@ -112,9 +114,9 @@ This problem has some parallels to the link decoration problem which is being di
 ## Open Questions
 
 * The following three questions assume that if marketers do not receive the capabilities to reduce “media waste” by having less effective content matching they will pay publishers less, which would thus reduce publisher revenues. Thus ensuring these are either addressed or the relative impact to publisher revenues is called out would be helpful (even if the impact would be less than proposed by other specifications). 
-* * How do marketers and publishers analyze and understand what are the best activity-based rules to assign “eligible” people to cohorts? 
-* * * A cohort provider, rather than an individual marketer or publisher, determines the rule-sets that define eligibility. Thus, there would be some impact to marketer value and publisher revenue relative to alternate mechanisms.
-* * How do marketers and publishers analyze and understand what is the unique unduplicated reach across different publishers for the same cohort? 
-* * * A cohort provider could identify unique reach (at least in terms of cohort provider registration ids) across publishers (perhaps publishing an estimated unique user count per cohort and/or per cohort-domain). This provides superior value relative to the proposed turtledove mechanism, which does not provide for calculations of unique reach.
-* * How do marketers and publishers achieve cross-publisher frequency capping if the limit on the number of cohorts is less than the number of ads a user is exposed to?
-* * * Given the scale restrictions on cohorts, this proposal does not address cross-publisher frequency capping. Thus, there would be some impact to marketer value and publisher revenue relative to alternate mechanisms.
+  * How do marketers and publishers analyze and understand what are the best activity-based rules to assign “eligible” people to cohorts? 
+    * A cohort provider, rather than an individual marketer or publisher, determines the rule-sets that define eligibility. Thus, there would be some impact to marketer value and publisher revenue relative to alternate mechanisms.
+  * How do marketers and publishers analyze and understand what is the unique unduplicated reach across different publishers for the same cohort? 
+    * A cohort provider could identify unique reach (at least in terms of cohort provider registration ids) across publishers (perhaps publishing an estimated unique user count per cohort and/or per cohort-domain). This provides superior value relative to the proposed turtledove mechanism, which does not provide for calculations of unique reach.
+  * How do marketers and publishers achieve cross-publisher frequency capping if the limit on the number of cohorts is less than the number of ads a user is exposed to?
+    * Given the scale restrictions on cohorts, this proposal does not address cross-publisher frequency capping. Thus, there would be some impact to marketer value and publisher revenue relative to alternate mechanisms.
