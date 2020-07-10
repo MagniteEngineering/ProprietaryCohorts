@@ -80,8 +80,16 @@ Cohort providers never receive any requests including user identifiable informat
 
 ## Benefits
 
-* anyone can be a cohort provider because the client controls what data is passed to the cohort provider and will not include any unique user-identifying info besides cohort registration id, which is never known outside of the request
-* publishers and marketers can choose their own cohort providers
+* People who like ads that remind them of sites they're interested in can choose to keep seeing those sorts of ads.
+* People who don't like these types of ads can choose to avoid seeing them.
+* People who wish to sever their association with any interest group with which they are associated can do so and can expect to stop seeing ads targeting the group.
+* Advertisers cannot learn the browsing habits of specific people, even those who have joined multiple interest groups.
+* Publishers cannot learn the interest groups of the people who visit them.
+* Marketers can retain campaign control and performance in so far as this does not infringe user privacy.
+* Appropriate control over ad safety, brand safety and transparency in billing is provided to both advertisers and publishers.
+* User experience while browsing the web is preserved.
+* Publishers and Marketers have an open market choice of who provides the best cohort solution for their individual needs. 
+
 
 ## Trade Offs
 
@@ -97,7 +105,29 @@ Cohort membership size must be large enough to protect the privacy of each membe
 
 User IP address has unfortunately been widely used for fingerprinting. Proxying all cohort registration requests will go a long way to preventing the cohort provider from being able to fingerprint the user and match them with some first party identifier. However, IP address has been used for low resolution geographic positioning, which can provide useful information when grouping users into cohorts and targeting them for marketing purposes. If clients choose to proxy requests, they should provide as-granular-as-possible geo information via request parameters to cohort provider.
 
-## Variants
+## Privacy and Security Considerations
+
+This proposal shared many of the privacy concerns as FLoC. 
+
+### Revealing People’s Interests to the Web
+
+This API democratizes access to some information about an individual’s browsing history on any site that opts into the same cohort provider. This is in contrast to today’s world, in which cookies or other tracking techniques may be used to collate someone’s browsing activity across many sites and potentially tie that information to a user’s PII.
+
+However, sites that know a person’s PII (e.g., when people sign in using their email address) could record and reveal their Cohort ID. This means that information about an individual's interests may eventually become public. This is not ideal, but still better than today’s situation in which PII can be joined to exact browsing history obtained via third-party cookies.
+
+As such, there will be people for whom providing this information in exchange for funding the web ecosystem is an unacceptable trade-off. Whether or not the browser sends a Cohort ID is user controllable.
+
+### Tracking people via their Cohort ID
+
+A Cohort ID could be used as a user identifier. It may not have enough bits of information to individually identify someone, but in combination with other information (such as an IP address), it might. One design mitigation is to ensure Cohort ID sizes are large enough that they are not useful for tracking. The Privacy Budget explainer points towards another relevant tool that Cohort IDs could be constrained by.
+
+### Sensitive Categories
+
+A Cohort ID might reveal sensitive information. As a first mitigation, the client could remove sensitive sites from its data collection. But this does not mean sensitive information can’t be leaked. Some people are sensitive to categories that others are not, and there is no globally accepted notion of sensitive sites.
+
+It should be clear that usage of Cohort IDs will never be able to prevent all misuse. There will be information that is sensitive in contexts that weren't predicted. Beyond Proprietary Cohort’s technical means of preventing abuse, sites that use Cohort IDs will need to ensure that people are treated fairly, just as they must with algorithmic decisions made based on any other data today.
+
+## Extensions
 
 ### Multiple Providers
 a single first party (domain or set) could send data to multiple providers, but can only receive a cohort from one. This will enable advertisers to provide info that can enable effective ads on publishers that might use different cohort providers but prevent the joining of cohort ids to a single first party id for fingerprinting purposes.
