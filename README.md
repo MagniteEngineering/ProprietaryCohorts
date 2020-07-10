@@ -105,7 +105,7 @@ a single first party (domain or set) could send data to multiple providers, but 
 ### Contextual Data
 Only providing domain in the cohort registration request leaves a large amount of very useful information on the table. For example, a marketer would be interested in targeting users who have added something to their shopping cart but not checked out, or perhaps users who have already purchased a product on their site.
 
-The cohort registration request could be extended to include the full url (or a larger portion thereof) than simply the domain to enrich the available data for that page view as long as the risk for fingerprinting is low (think privacy budget). Exact mechanism for controlling the granularity of information needs to be worked out, but here are some options:
+The cohort registration request could be extended to include the full url (or a larger portion thereof) rather than simply the domain to enrich the available data for that page view as long as the risk for fingerprinting is low (think privacy budget). Exact mechanism for controlling the granularity of information needs to be worked out, but here are some options:
 * Client uses some aggregate page view service to ensure all reported urls have a minimum unique visitor count
 * Publishers publish a list of valid urls once a day (that is limited to lets say 100). Browsers only include url in cohort registration if url is on the list. Clients could proxy requests for this list with caching to eliminate the possibility of using a different list with different users (and use this to correlate users and history).
 
