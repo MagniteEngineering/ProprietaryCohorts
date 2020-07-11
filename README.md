@@ -150,3 +150,8 @@ This problem has some parallels to the link decoration problem which is being di
     * A cohort provider could identify unique reach (at least in terms of cohort provider registration ids) across publishers (perhaps publishing an estimated unique user count per cohort and/or per cohort-domain). This provides superior value relative to the proposed turtledove mechanism, which does not provide for calculations of unique reach.
   * How do marketers and publishers achieve cross-publisher frequency capping if the limit on the number of cohorts is less than the number of ads a user is exposed to?
     * Given the scale restrictions on cohorts, this proposal does not address cross-publisher frequency capping. Thus, there would be some impact to marketer value and publisher revenue relative to alternate mechanisms.
+    
+## Related Proposals
+* [FLoC](https://github.com/jkarlin/floc)
+* [SPARROW](https://github.com/WICG/sparrow)
+* [TURTLEDOVE](https://github.com/WICG/turtledove)
