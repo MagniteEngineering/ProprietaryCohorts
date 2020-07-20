@@ -94,7 +94,7 @@ The Cohort Provider is any entity who provides a cohort ID to a web page via a C
 
 Within the scope of this proposal, the only information provided to a Cohort Provider is a client-specific, short-lived `Cohort Provider Registration ID` that is unique to the cohort provider, and some relatively small amount of information (with k-anonymity) about a pageview (i.e. domain-name).
 
-The cohort provider is not supposed to be able to join the user-ID or the profile with any other information about the user.
+The Cohort Provider can build a database of pageviews for each `Cohort Registration ID`, but should not be able to join that ID or any information collected with any external information about the user.
 
 
 ## Benefits
