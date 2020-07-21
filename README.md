@@ -78,6 +78,25 @@ The cohort provider can be any entity. It is responsible for grouping Cohort Pro
 
 Cohort providers never receive any requests including user identifiable information along with the cohort registration id to prevent any correlation between user identity and cohort registration ID.
 
+## Information available to each party
+
+### Webpage
+
+The hypertext document a user is viewing. The webpage must opt-in to sharing page-view information with a Cohort Provider by including a cohort registration header tag.
+
+Within the scope of this proposal, the only information provided to the website is a CohortId.
+
+This proposal does not make a technical distinction between a Publisher and a Marketer/Advertiser, all webpages are treated the equally.
+
+### Cohort Provider
+
+The Cohort Provider is any entity who provides a cohort ID to a web page via a Cohort Registration Request.
+
+Within the scope of this proposal, the only information provided to a Cohort Provider is a client-specific, short-lived `Cohort Provider Registration ID` that is unique to the cohort provider, and some relatively small amount of information (with k-anonymity) about a pageview (i.e. domain-name).
+
+The Cohort Provider can build a database of pageviews for each `Cohort Registration ID`, but should not be able to join that ID or any information collected with any external information about the user.
+
+
 ## Benefits
 
 * People who like ads that remind them of sites they're interested in can choose to keep seeing those sorts of ads.
