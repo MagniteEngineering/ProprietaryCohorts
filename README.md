@@ -84,7 +84,7 @@ Cohort providers never receive any requests including user identifiable informat
 * People who don't like these types of ads can choose to avoid seeing them.
 * People who wish to sever their association with any interest group with which they are associated can do so and can expect to stop seeing ads targeting the group.
 * Advertisers cannot learn the browsing habits of specific people, even those who have joined multiple interest groups.
-* Publishers cannot learn the interest groups of the people who visit them.
+* Publishers learn only the single cohortId of the people who visit them (much like FLoC).
 * Marketers can retain campaign control and performance in so far as this does not infringe user privacy.
 * Appropriate control over ad safety, brand safety and transparency in billing is provided to both advertisers and publishers.
 * User experience while browsing the web is preserved.
