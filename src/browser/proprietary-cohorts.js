@@ -5,6 +5,23 @@ var getId = function () {
     return id++;
 }
 
+function Deferred() {
+	if (typeof(Promise) != 'undefined' && Promise.defer) {
+		return Promise.defer();
+	} else if (typeof(PromiseUtils) != 'undefined'  && PromiseUtils.defer) {
+		return PromiseUtils.defer();
+	} else {
+		this.resolve = null;
+        this.reject = null;
+        
+		this.promise = new Promise(function(resolve, reject) {
+			this.resolve = resolve;
+			this.reject = reject;
+		}.bind(this));
+		Object.freeze(this);
+	}
+}
+
 var _outstandingCalls = {};
 
 var IframeStorage = function (options) {
@@ -17,17 +34,17 @@ var IframeStorage = function (options) {
     this.iframe.setAttribute('name', 'iframe');
     this.iframe.setAttribute('src', this.url);
 
-    var d = q.defer();
-    this.readyPromise = d.promise;
-    if (this.iframe.attachEvent){
-        this.iframe.attachEvent("onload", function(){
-            d.resolve();
-        });
-    } else {
-        this.iframe.onload = function(){
-            d.resolve();
-        };
-    }
+    this.readyPromise = new Promise(function (resolve) {
+        if (this.iframe.attachEvent){
+            this.iframe.attachEvent("onload", function(){
+                resolve();
+            });
+        } else {
+            this.iframe.onload = function(){
+                resolve();
+            };
+        }
+    })
 
     document.body.appendChild(this.iframe);
     window.addEventListener('message', this._receiveMessage, false);
@@ -49,7 +66,7 @@ IframeStorage.prototype = {
 
     _callMethod: function (method, params) {
         var that = this;
-        var d = q.defer();
+        var d = Deferred();
         var callId = getId();
         var message = {
             method: method,
@@ -57,6 +74,7 @@ IframeStorage.prototype = {
             id: callId
         }
         _outstandingCalls[callId] = d;
+        
         this.readyPromise.then(function () {
             that.iframe.contentWindow.postMessage(JSON.stringify(message), that.url);
         });
@@ -87,29 +105,31 @@ IframeStorage.prototype = {
 }
 
 window.ProprietaryCohorts = {
+    promise: null, 
+    cohortId: 'foo',
     providerId: 'magnite',
-    providerUrl: 'https://proprietarycohorts.github.io/server/classifier.js',
+    providerUrl: 'https://magniteengineering.github.io/ProprietaryCohorts/src/server/classifier.js',
     getCohortId: function () {
-        return 'foo';
+        return window.ProprietaryCohorts.cohortId;
     }
 };
 
 window.onload= function() {
     var iframeStorage = new IframeStorage({
-        url: 'https://proprietarycohorts.github.io/browser/iframe.html'
+        url: 'https://magniteengineering.github.io/ProprietaryCohorts/src/browser/iframe.html'
     });
 
-    if (ProprietaryCohorts && ProprietaryCohorts.classifier) {
+    var storageKey = 'PC_STATE_' + window.ProprietaryCohorts.providerId;
 
-    }
+   iframeStorage.getItem(storageKey).then(function (value) {
+        console.log('got state from storage');
+        console.log(value);
+        var state = JSON.parse(value) || {};
 
-    var date = Date.now().toString();
-    console.log(date);
-    iframeStorage.setItem('test', date).then(function (){
-        console.log('set item');
-        iframeStorage.getItem('test').then(function (value) {
-            console.log('got item');
-            console.log(value);
-        });
+        if (window.ProprietaryCohorts && window.ProprietaryCohorts.classifier) {
+            window.ProprietaryCohorts.cohortId = window.ProprietaryCohorts.classifier(window.location.href, state);
+        }
+
+        iframeStorage.setItem(storageKey, JSON.stringify(state));
     });
 };
