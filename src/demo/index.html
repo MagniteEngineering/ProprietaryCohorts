@@ -8,8 +8,9 @@
 <body>
     <div id="cohortId"></div>
 <script>
-    document.getElementById('cohortId').innerText = window.ProprietaryCohorts.getCohortId();
-
+    window.ProprietaryCohorts.getCohortId().then(function(cohortId) {
+        document.getElementById('cohortId').innerText = cohortId;
+    });
 </script>
 </body>
 </html>

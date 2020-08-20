@@ -105,12 +105,11 @@ IframeStorage.prototype = {
 }
 
 window.ProprietaryCohorts = {
-    promise: null, 
+    d: Deferred(), 
     cohortId: 'foo',
     providerId: 'magnite',
-    providerUrl: 'https://magniteengineering.github.io/ProprietaryCohorts/src/server/classifier.js',
     getCohortId: function () {
-        return window.ProprietaryCohorts.cohortId;
+        return window.ProprietaryCohorts.d.promise;
     }
 };
 
@@ -129,6 +128,7 @@ window.onload= function() {
         if (window.ProprietaryCohorts && window.ProprietaryCohorts.classifier) {
             window.ProprietaryCohorts.cohortId = window.ProprietaryCohorts.classifier(window.location.href, state);
         }
+        window.ProprietaryCohorts.d.resolve(window.ProprietaryCohorts.cohortId);
 
         iframeStorage.setItem(storageKey, JSON.stringify(state));
     });
