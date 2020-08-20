@@ -5,7 +5,7 @@ if (ProprietaryCohorts) {
             return;
         }
 
-        if (typeof state.history !== 'array') {
+        if (!Array.isArray(state.history)) {
             state.history = [];
         }
 
