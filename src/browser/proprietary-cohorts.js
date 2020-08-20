@@ -34,17 +34,17 @@ var IframeStorage = function (options) {
     this.iframe.setAttribute('name', 'iframe');
     this.iframe.setAttribute('src', this.url);
 
-    this.readyPromise = new Promise(function (resolve) {
-        if (this.iframe.attachEvent){
-            this.iframe.attachEvent("onload", function(){
-                resolve();
-            });
-        } else {
-            this.iframe.onload = function(){
-                resolve();
-            };
-        }
-    })
+    var d = new Deferred();
+    this.readyPromise = d.promise;
+    if (this.iframe.attachEvent){
+        this.iframe.attachEvent("onload", function(){
+            d.resolve();
+        });
+    } else {
+        this.iframe.onload = function(){
+            d.resolve();
+        };
+    }
 
     document.body.appendChild(this.iframe);
     window.addEventListener('message', this._receiveMessage, false);
@@ -66,7 +66,7 @@ IframeStorage.prototype = {
 
     _callMethod: function (method, params) {
         var that = this;
-        var d = Deferred();
+        var d = new Deferred();
         var callId = getId();
         var message = {
             method: method,
@@ -105,7 +105,7 @@ IframeStorage.prototype = {
 }
 
 window.ProprietaryCohorts = {
-    d: Deferred(), 
+    d: new Deferred(), 
     cohortId: 'foo',
     providerId: 'magnite',
     getCohortId: function () {
