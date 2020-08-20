@@ -116,6 +116,7 @@ window.ProprietaryCohorts = {
 window.onload= function() {
     var iframeStorage = new IframeStorage({
         url: 'https://magniteengineering.github.io/ProprietaryCohorts/src/browser/iframe.html'
+        // url: 'http://localhost:8080/src/browser/iframe.html'
     });
 
     var storageKey = 'PC_STATE_' + window.ProprietaryCohorts.providerId;

@@ -17,6 +17,6 @@ if (ProprietaryCohorts) {
 
         console.log(state);
 
-        return cohortId;
+        return state.cohortId;
     }
 }
