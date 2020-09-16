@@ -44,6 +44,12 @@ Publishers could use this Cohort ID both for internal analytics purposes and for
 
 This system would provide for the needed advertising functionality of both publishers and buyers while protecting users’ privacy.
 
+### High Level Flow Diagram
+![High level flow diagram](https://user-images.githubusercontent.com/14223042/93375304-370fb780-f815-11ea-8354-cea10e962915.png)
+
+### Sequence Diagram
+![High level flow diagram](https://user-images.githubusercontent.com/14223042/93375312-3840e480-f815-11ea-95d0-d031251da312.png)
+
 ## Design Elements
 
 ### Cohort Classifier Request
