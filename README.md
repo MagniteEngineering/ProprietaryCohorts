@@ -20,7 +20,7 @@ A website (news-publisher.example) who chooses to utilize proprietary cohorts ad
 
 A supporting browser reads this tag and executes a request to `https://cohort-provider.example/classifier.js` to retrieve a javascript file that will be used to classify the user locally into a cohort.
 
-An extremely sinple example of this function might be:
+An extremely simple example of this function might be:
 
 ```
 function classifier(storedData, currentUrl) {
