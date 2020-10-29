@@ -167,6 +167,9 @@ It should be clear that usage of Cohort IDs will never be able to prevent all mi
 
 ## Extensions
 
+### Fenced Frames
+Proprietary Cohorts would be simplified by exposing an API within a fenced frame to set the users cohortID. Publishers would then be able to add a Fenced Frame tag within the body of their page (instead of the header), passing in the current page url. The cohort classification function would have access to state within the frame but would be unable make any network requests to share any information.
+
 ### Multiple Providers
 a single first party (domain or set) could send data to multiple providers, but can only receive a cohort from one. This will enable advertisers to provide info that can enable effective ads on publishers that might use different cohort providers but prevent the joining of cohort ids to a single first party id for fingerprinting purposes.
     
@@ -174,3 +177,4 @@ a single first party (domain or set) could send data to multiple providers, but 
 * [FLoC](https://github.com/jkarlin/floc)
 * [SPARROW](https://github.com/WICG/sparrow)
 * [TURTLEDOVE](https://github.com/WICG/turtledove)
+* [Fenced Frame](https://github.com/shivanigithub/fenced-frame)
